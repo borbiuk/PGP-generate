@@ -2,15 +2,25 @@
 	"name": "pgp-simple",
 	"version": "1.0.0",
 	"description": "CLI tool to generate PGP keys pair",
-	"main": "index.js",
-	"scripts": {
-		"build": "tsc index.ts",
-		"test:file": "npm run build && node index.js --fileName ./dist/test",
-		"test:print": "npm run build && node index.js --print"
-	},
 	"keywords": [
-		"PGP", "encryption", "CLI"
+		"PGP",
+		"encryption",
+		"CLI"
 	],
 	"author": "Nazarii Borbiuk",
-	"license": "ISC"
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/borbiuk/PGP-simple"
+	},
+	"homepage": "https://github.com/borbiuk/PGP-simple#readme",
+	"license": "MIT",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"test:file": "node index.js --name Developer --email dev@email.com --passphrase mySecret --fileName ./dist/test",
+		"test:print": "node index.js --name Developer --email dev@email.com --passphrase mySecret --print"
+	},
+	"dependencies": {
+		"openpgp": "5.11.1"
+	}
 }
