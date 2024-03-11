@@ -1,0 +1,11 @@
+# PGP-simple .gitignore
+
+# npm dependencies
+node_modules
+package-lock.json
+
+# test keys directory
+dist
+
+# JetBrains IDEA
+.idea

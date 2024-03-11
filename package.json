@@ -1,0 +1,16 @@
+{
+	"name": "pgp-simple",
+	"version": "1.0.0",
+	"description": "CLI tool to generate PGP keys pair",
+	"main": "index.js",
+	"scripts": {
+		"build": "tsc index.ts",
+		"test:file": "npm run build && node index.js --fileName ./dist/test",
+		"test:print": "npm run build && node index.js --print"
+	},
+	"keywords": [
+		"PGP", "encryption", "CLI"
+	],
+	"author": "Nazarii Borbiuk",
+	"license": "ISC"
+}
