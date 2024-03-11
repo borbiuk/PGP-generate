@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { promises as fs } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -48,12 +50,12 @@ const program = new commander.Command();
 
 // Define CLI options and commands
 program
-	.option('-n, --name <name>', 'Your name')
-	.option('-e, --email <email>', 'Your email')
-	.option('-l, --level <level>', 'Key size level (0, 1, 2, 3)')
-	.option('-p, --passphrase <passphrase>', 'Passphrase for the key pair')
-	.option('-f, --fileName <fileName>', '(Optional) File name for saving the key pair')
-	.option('--print <print>', '(Optional) Print the key pair to the console')
+	.requiredOption('-n, --name <name>', 'Your name')
+	.requiredOption('-e, --email <email>', 'Your email')
+	.requiredOption('-p, --passphrase <passphrase>', 'Passphrase for the key pair')
+	.option('-l, --level <level>', '(Optional) Key size level (1, 2, 3, 4)', 3)
+	.option('-f, --fileName [fileName]', '(Optional) File name for saving the key pair')
+	.option('--print', '(Optional) Print the key pair to the console')
 	.action(async () => {
 		// Process command line options
 		const options = program.opts();
@@ -61,7 +63,7 @@ program
 		const { name, email, level, passphrase, fileName, print } = options;
 
 		// Convert level to key size
-		const keySize = keySizes[parseInt(level, 10)] || 4096;
+		const keySize = keySizes[parseInt(level, 10) + 1] || 4096;
 
 		// Generate and handle PGP key pair
 		const keys = await generatePGPKeyPair(name, email, keySize, passphrase);

@@ -1,4 +1,4 @@
-# PGP-generate .gitignore
+# PGP-generate .npmignore
 
 # npm dependencies
 node_modules

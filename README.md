@@ -1,22 +1,26 @@
-# PGP-simple (pgps)
+# PGP-generate (pgpg)
 
-CLI tool to generate PGP keys pair
+Simple CLI tool to generate PGP keys pair.
+
+## Installation
+
+`npm i -g pgp-generate`
 
 ## Usage
 
 Run for details:
 ```shell
-pgps --help
+pgpg --help
 ```
 
 Generate key to files {fileName}.private and {fileName}.public:
 ```shell
-pgps -n {name} -e {email} -p {secret phrase} -f {path to file}
+pgpg -n {name} -e {email} -p {secret phrase} -f {path to file}
 ```
 
 Generate key to console:
 ```shell
-pgps -n {name} -e {email} -p {secret phrase} -f {path to file} --print
+pgpg -n {name} -e {email} -p {secret phrase} -f {path to file} --print
 ```
 
 Additional parameters:

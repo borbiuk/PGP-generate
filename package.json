@@ -1,25 +1,31 @@
 {
-	"name": "pgp-simple",
-	"version": "1.0.0",
-	"description": "CLI tool to generate PGP keys pair",
-	"keywords": [
-		"PGP",
-		"encryption",
-		"CLI"
-	],
+	"name": "pgp-generate",
+	"version": "1.0.0-beta",
 	"author": "Nazarii Borbiuk",
+	"license": "MIT",
+	"description": "Simple CLI tool to generate PGP keys pair",
+	"keywords": [
+		"cli",
+		"encryption",
+		"file",
+		"generate",
+		"pgp",
+		"rsa"
+	],
+	"main": "index.mjs",
+	"bin": {
+		"pgp-generate": "index.mjs",
+		"pgpg": "index.mjs"
+	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/borbiuk/PGP-simple"
+		"url": "git+https://github.com/borbiuk/PGP-generate.git"
 	},
-	"homepage": "https://github.com/borbiuk/PGP-simple#readme",
-	"license": "MIT",
-	"main": "index.js",
-	"type": "module",
+	"homepage": "https://github.com/borbiuk/PGP-generate#readme",
 	"scripts": {
-		"help": "node index.js --help",
-		"test:file": "node index.js -n Developer -e dev@email.com -p mySecret -f ./dist/test",
-		"test:print": "node index.js -n Developer -e dev@email.com -p mySecret"
+		"help": "node index.mjs --help",
+		"test:file": "node index.mjs -n Developer -e dev@email.com -p mySecret -l 3 -f ./dist/test",
+		"test:print": "node index.mjs -n Developer -e dev@email.com -p mySecret"
 	},
 	"dependencies": {
 		"commander": "7.2.0",
