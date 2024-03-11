@@ -2,15 +2,16 @@ import { promises as fs } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
+import commander from 'commander';
+import * as openpgp from 'openpgp';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
-import * as openpgp from 'openpgp';
 
 
 const keySizes = [1024, 2048, 4096, 8194];
 
-// Generate PGP key pair and optionally print or save to files.
+// Function to generate PGP key pair
 const generatePGPKeyPair = async (name, email, keySize, passphrase) => {
 	return await openpgp.generateKey({
 		type: 'rsa',
@@ -20,13 +21,13 @@ const generatePGPKeyPair = async (name, email, keySize, passphrase) => {
 	});
 }
 
-// Print keys to console.
+// Function to print keys to console
 const printKeys = ({ privateKey, publicKey }) => {
 	console.log('Private Key:', privateKey);
 	console.log('Public Key:', publicKey);
 }
 
-// Write keys to .private and .public files.
+// Function to save keys to files
 const saveKeysToFile = async ({ privateKey, publicKey }, fileName) => {
 	// Set file paths for private and public keys
 	const privateKeyPath = join(__dirname, fileName + '.private');
@@ -42,55 +43,34 @@ const saveKeysToFile = async ({ privateKey, publicKey }, fileName) => {
 	console.log(`Key pair files generated: ${privateKeyPath} and ${publicKeyPath}`);
 }
 
-const main = async () => {
+// Create a new Commander program
+const program = new commander.Command();
 
-	// Process command line arguments
-	const args = process.argv.slice(2);
-	const nameIndex = args.indexOf('--name');
-	const emailIndex = args.indexOf('--email');
-	const levelIndex = args.indexOf('--level');
-	const passphraseIndex = args.indexOf('--passphrase');
+// Define CLI options and commands
+program
+	.option('-n, --name <name>', 'Your name')
+	.option('-e, --email <email>', 'Your email')
+	.option('-l, --level <level>', 'Key size level (0, 1, 2, 3)')
+	.option('-p, --passphrase <passphrase>', 'Passphrase for the key pair')
+	.option('-f, --fileName <fileName>', '(Optional) File name for saving the key pair')
+	.option('--print <print>', '(Optional) Print the key pair to the console')
+	.action(async () => {
+		// Process command line options
+		const options = program.opts();
 
-	const fileNameIndex = args.indexOf('--fileName');
-	const printFlagIndex = args.indexOf('--print');
+		const { name, email, level, passphrase, fileName, print } = options;
 
-	if (nameIndex === -1 || emailIndex === -1 || passphraseIndex === -1 || (fileNameIndex === -1 && printFlagIndex === -1)) {
-		console.error('Invalid parameters.');
-		return;
-	}
+		// Convert level to key size
+		const keySize = keySizes[parseInt(level, 10)] || 4096;
 
-	// Extract fileName and print flag from command line arguments
-	const name = args[nameIndex + 1];
-	const email = args[emailIndex + 1];
-	const passphrase = args[passphraseIndex + 1];
-
-	const levelParam = process.argv[levelIndex + 1];
-	let keySize;
-	if (levelParam !== undefined) {
-		const level = parseInt(levelParam, 10);
-
-		if (!isNaN(level) && level >= 0 && level < keySizes.length) {
-			keySize = keySizes[level];
+		// Generate and handle PGP key pair
+		const keys = await generatePGPKeyPair(name, email, keySize, passphrase);
+		if (!print && fileName) {
+			await saveKeysToFile(keys, fileName);
 		} else {
-			keySize = 4096;
+			printKeys(keys);
 		}
-	} else {
-		keySize = 4096;
-	}
+	});
 
-	const fileName = args[fileNameIndex + 1];
-	const print = printFlagIndex !== -1;
-
-	// Generate and handle PGP key pair
-	const keys = await generatePGPKeyPair(name, email, keySize, passphrase);
-	if (print) {
-		printKeys(keys);
-	}
-	else {
-		await saveKeysToFile(keys, fileName);
-	}
-}
-
-main().catch(error => {
-	console.error('Error generating PGP key pair:', error);
-})
+// Parse command line arguments
+program.parse(process.argv);
