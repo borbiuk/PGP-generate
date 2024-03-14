@@ -20,7 +20,7 @@ pgpg -n {name} -e {email} -p {secret phrase} -f {path to file}
 
 Generate key to console:
 ```shell
-pgpg -n {name} -e {email} -p {secret phrase} -f {path to file} --print
+pgpg -n {name} -e {email} -p {secret phrase} --print
 ```
 
 Additional parameters:
