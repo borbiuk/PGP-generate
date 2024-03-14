@@ -1,6 +1,6 @@
 {
 	"name": "pgp-generate",
-	"version": "1.0.1-beta",
+	"version": "1.0.2-beta",
 	"author": "Nazarii Borbiuk",
 	"license": "MIT",
 	"description": "Simple CLI tool to generate PGP keys pair",
@@ -12,10 +12,10 @@
 		"pgp",
 		"rsa"
 	],
-	"main": "index.mjs",
+	"main": "index.js",
 	"bin": {
-		"pgp-generate": "index.mjs",
-		"pgpg": "index.mjs"
+		"pgp-generate": "index.js",
+		"pgpg": "index.js"
 	},
 	"repository": {
 		"type": "git",
@@ -23,12 +23,18 @@
 	},
 	"homepage": "https://github.com/borbiuk/PGP-generate#readme",
 	"scripts": {
-		"help": "node index.mjs --help",
-		"test:file": "node index.mjs -n Developer -e dev@email.com -p mySecret -l 3 -f ./dist/test",
-		"test:print": "node index.mjs -n Developer -e dev@email.com -p mySecret"
+		"build": "npx tsc index.ts",
+		"help": "node index.js --help",
+		"test:file": "node index.js -n Developer -e dev@email.com -p mySecret -l 3 -f ./dist/test",
+		"test:print": "node index.js -n Developer -e dev@email.com -p mySecret"
 	},
 	"dependencies": {
-		"commander": "7.2.0",
+		"commander": "12.0.0",
 		"openpgp": "5.11.1"
+	},
+	"devDependencies": {
+		"@openpgp/web-stream-tools": "0.0.14",
+		"@types/node": "^20.11.27",
+		"typescript": "5.4.2"
 	}
 }

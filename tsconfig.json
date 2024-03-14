@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist/",
+		"sourceMap": true,
+		"target": "es2022",
+		"module": "commonjs",
+		"types": ["node"],
+		"allowJs": true,
+		"typeRoots": [
+			"./node_modules/@types"
+		]
+	}
+}

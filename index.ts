@@ -1,15 +1,10 @@
 #!/usr/bin/env node
 
-import { promises as fs } from 'fs';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-
-import commander from 'commander';
+import { Command } from 'commander';
 import * as openpgp from 'openpgp';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
+import { promises as fs } from 'fs';
+import { dirname, join } from 'path';
 
 const keySizes = [1024, 2048, 4096, 8194];
 
@@ -46,14 +41,14 @@ const saveKeysToFile = async ({ privateKey, publicKey }, fileName) => {
 }
 
 // Create a new Commander program
-const program = new commander.Command();
+const program = new Command();
 
 // Define CLI options and commands
 program
 	.requiredOption('-n, --name <name>', 'Your name')
 	.requiredOption('-e, --email <email>', 'Your email')
 	.requiredOption('-p, --passphrase <passphrase>', 'Passphrase for the key pair')
-	.option('-l, --level <level>', '(Optional) Key size level (1, 2, 3, 4)', 3)
+	.option('-l, --level <level>', '(Optional) Key size level (1, 2, 3, 4)', '3')
 	.option('-f, --fileName [fileName]', '(Optional) File name for saving the key pair')
 	.option('--print', '(Optional) Print the key pair to the console')
 	.action(async () => {
