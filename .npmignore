@@ -1,15 +1,18 @@
 # PGP-generate .npmignore
 
+# JetBrains IDEA
+.idea
+.DS_store
+
 # npm dependencies
 node_modules
 package-lock.json
 
-# test keys directory
-dist
+# example keys directory
+examples
 
-# JetBrains IDEA
-.idea
-.DS_store
+# build
+index.js
 
 # typescript
 index.ts

@@ -1,6 +1,6 @@
 {
 	"name": "pgp-generate",
-	"version": "1.0.6-beta",
+	"version": "1.0.7-beta",
 	"author": "Nazarii Borbiuk",
 	"license": "MIT",
 	"description": "Simple CLI tool to generate PGP keys pair",
@@ -12,10 +12,10 @@
 		"pgp",
 		"rsa"
 	],
-	"main": "index.js",
+	"main": "index.min.js",
 	"bin": {
-		"pgp-generate": "index.js",
-		"pgpg": "index.js"
+		"pgp-generate": "index.min.js",
+		"pgpg": "index.min.js"
 	},
 	"repository": {
 		"type": "git",
@@ -24,10 +24,11 @@
 	"homepage": "https://github.com/borbiuk/PGP-generate#readme",
 	"scripts": {
 		"build": "npx tsc index.ts",
-		"publish": "npm run build && npm publish",
+		"minify": "uglifyjs index.js -o index.min.js",
+		"publish": "npm run build && npm run minify && npm publish",
 		"example:help": "node index.js --help",
 		"example:print": "node index.js -n Developer -e dev@email.com -p mySecret",
-		"example:file": "node index.js -n Developer -e dev@email.com -p mySecret -l 3 -f ./dist/test"
+		"example:file": "node index.js -n Developer -e dev@email.com -p mySecret -l 3 -f ./examples/test"
 	},
 	"dependencies": {
 		"commander": "12.0.0",
@@ -36,6 +37,7 @@
 	"devDependencies": {
 		"@openpgp/web-stream-tools": "0.0.14",
 		"@types/node": "20.11.27",
-		"typescript": "5.4.2"
+		"typescript": "5.4.2",
+		"uglify-js": "3.17.4"
 	}
 }
