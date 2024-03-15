@@ -104,7 +104,7 @@ program
     .requiredOption('-p, --passphrase <passphrase>', 'Passphrase for the key pair')
     .option('-l, --level <level>', '(Optional) Key size level (1, 2, 3, 4)', '3')
     .option('-f, --fileName [fileName]', '(Optional) File name for saving the key pair')
-    .option('--print', '(Optional) Print the key pair to the console')
+    .option('--print', '(Default) Print the key pair to the console')
     .action(function () { return __awaiter(void 0, void 0, void 0, function () {
     var options, name, email, level, passphrase, fileName, print, keySize, keys;
     return __generator(this, function (_a) {

@@ -64,7 +64,7 @@ program
 	.requiredOption('-p, --passphrase <passphrase>', 'Passphrase for the key pair')
 	.option('-l, --level <level>', '(Optional) Key size level (1, 2, 3, 4)', '3')
 	.option('-f, --fileName [fileName]', '(Optional) File name for saving the key pair')
-	.option('--print', '(Optional) Print the key pair to the console')
+	.option('--print', '(Default) Print the key pair to the console')
 	.action(async (): Promise<void> => {
 		// Process command line options
 		const options = program.opts();

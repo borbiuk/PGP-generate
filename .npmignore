@@ -10,3 +10,10 @@ dist
 # JetBrains IDEA
 .idea
 .DS_store
+
+# typescript
+index.ts
+tsconfig.json
+
+# other
+README.md

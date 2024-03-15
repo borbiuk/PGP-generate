@@ -1,6 +1,6 @@
 {
 	"name": "pgp-generate",
-	"version": "1.0.4-beta",
+	"version": "1.0.5-beta",
 	"author": "Nazarii Borbiuk",
 	"license": "MIT",
 	"description": "Simple CLI tool to generate PGP keys pair",
@@ -24,9 +24,10 @@
 	"homepage": "https://github.com/borbiuk/PGP-generate#readme",
 	"scripts": {
 		"build": "npx tsc index.ts",
-		"help": "node index.js --help",
-		"test:file": "node index.js -n Developer -e dev@email.com -p mySecret -l 3 -f ./dist/test",
-		"test:print": "node index.js -n Developer -e dev@email.com -p mySecret"
+		"publish": "npm run build && npm publish",
+		"example:help": "node index.js --help",
+		"example:print": "node index.js -n Developer -e dev@email.com -p mySecret",
+		"example:file": "node index.js -n Developer -e dev@email.com -p mySecret -l 3 -f ./dist/test"
 	},
 	"dependencies": {
 		"commander": "12.0.0",
@@ -34,7 +35,7 @@
 	},
 	"devDependencies": {
 		"@openpgp/web-stream-tools": "0.0.14",
-		"@types/node": "^20.11.27",
+		"@types/node": "20.11.27",
 		"typescript": "5.4.2"
 	}
 }
