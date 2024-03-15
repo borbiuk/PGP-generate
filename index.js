@@ -41,7 +41,7 @@ var commander_1 = require("commander");
 var openpgp = require("openpgp");
 var fs_1 = require("fs");
 var path_1 = require("path");
-var keySizes = [1024, 2048, 4096, 8194];
+var KEY_SIZES = [1024, 2048, 4096, 8194];
 // Function to generate PGP key pair
 var generatePGPKeyPair = function (name, email, keySize, passphrase) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
@@ -51,8 +51,12 @@ var generatePGPKeyPair = function (name, email, keySize, passphrase) { return __
                     rsaBits: keySize,
                     userIDs: [{ name: name, email: email }],
                     passphrase: passphrase,
-                })];
-            case 1: return [2 /*return*/, _a.sent()];
+                })
+                // Function to print keys to console
+            ];
+            case 1: return [2 /*return*/, _a.sent()
+                // Function to print keys to console
+            ];
         }
     });
 }); };
@@ -91,7 +95,9 @@ var saveKeysToFile = function (_a, fileName_1) { return __awaiter(void 0, [_a, f
 }); };
 // Create a new Commander program
 var program = new commander_1.Command();
-// Define CLI options and commands
+program
+    .name('PGP-generate (pgpg)')
+    .description('Simple CLI tool to generate PGP keys pair');
 program
     .requiredOption('-n, --name <name>', 'Your name')
     .requiredOption('-e, --email <email>', 'Your email')
@@ -106,7 +112,7 @@ program
             case 0:
                 options = program.opts();
                 name = options.name, email = options.email, level = options.level, passphrase = options.passphrase, fileName = options.fileName, print = options.print;
-                keySize = keySizes[parseInt(level, 10) + 1] || 4096;
+                keySize = KEY_SIZES[parseInt(level, 10) + 1] || 4096;
                 return [4 /*yield*/, generatePGPKeyPair(name, email, keySize, passphrase)];
             case 1:
                 keys = _a.sent();
