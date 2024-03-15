@@ -38,8 +38,8 @@ const saveKeysToFile = async (
 	fileName: string
 ): Promise<void> => {
 	// Set file paths for private and public keys
-	const privateKeyPath = join(__dirname, fileName + '.private');
-	const publicKeyPath = join(__dirname, fileName + '.public');
+	const privateKeyPath = join(process.cwd(), fileName + '.private');
+	const publicKeyPath = join(process.cwd(), fileName + '.public');
 
 	// Ensure that the directories in the path exist
 	await fs.mkdir(dirname(privateKeyPath), { recursive: true });

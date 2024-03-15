@@ -73,8 +73,8 @@ var saveKeysToFile = function (_a, fileName_1) { return __awaiter(void 0, [_a, f
     return __generator(this, function (_c) {
         switch (_c.label) {
             case 0:
-                privateKeyPath = (0, path_1.join)(__dirname, fileName + '.private');
-                publicKeyPath = (0, path_1.join)(__dirname, fileName + '.public');
+                privateKeyPath = (0, path_1.join)(process.cwd(), fileName + '.private');
+                publicKeyPath = (0, path_1.join)(process.cwd(), fileName + '.public');
                 // Ensure that the directories in the path exist
                 return [4 /*yield*/, fs_1.promises.mkdir((0, path_1.dirname)(privateKeyPath), { recursive: true })];
             case 1:
