@@ -10,3 +10,6 @@ dist
 # JetBrains IDEA
 .idea
 .DS_store
+
+# build
+index.js
