@@ -1,6 +1,6 @@
 {
 	"name": "pgp-generate",
-	"version": "1.0.5-beta",
+	"version": "1.0.6-beta",
 	"author": "Nazarii Borbiuk",
 	"license": "MIT",
 	"description": "Simple CLI tool to generate PGP keys pair",

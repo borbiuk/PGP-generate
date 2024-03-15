@@ -14,6 +14,3 @@ dist
 # typescript
 index.ts
 tsconfig.json
-
-# other
-README.md
