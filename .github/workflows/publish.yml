@@ -1,0 +1,28 @@
+name: Publish PGP Generate Package
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22'  # Set to your desired Node.js version
+        registry-url: 'https://registry.npmjs.org'  # Use npm registry
+
+    - name: Install dependencies
+      run: npm install  # This installs all dependencies in your project
+
+    - name: Publish package to npm
+      run: npm publish --access public  # Publishes your package to npm
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  # Use the NPM_TOKEN secret for authentication
