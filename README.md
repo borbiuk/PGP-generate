@@ -46,8 +46,3 @@ pgpg -n <name> -e <email> -p <secret phrase> --print
 Contributions are welcome! Feel free to fork, modify, and submit a pull request.
 
 For issues or feature requests, please open an issue.
-
----
-
-This version makes the content clearer, improves readability, and adds professionalism. Let me know if you'd like any
-tweaks! 🚀
